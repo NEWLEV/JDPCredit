@@ -1,0 +1,9 @@
+{
+  "name": "jdp-credit-solutions",
+  "version": "1.0.0",
+  "description": "JDP Credit Solutions Landing Page",
+  "scripts": {
+    "start": "npx serve .",
+    "build": "echo 'Static site - no build needed'"
+  }
+}
