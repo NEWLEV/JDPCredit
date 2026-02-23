@@ -4,6 +4,23 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  /* ——— Form Success/Error Messages ——— */
+  const urlParams = new URLSearchParams(window.location.search);
+  const formMessage = document.getElementById('form-message');
+
+  if (formMessage) {
+    if (urlParams.get('success') === '1') {
+      formMessage.innerHTML = '<div class="form-success">Thank you! Your request has been received. We\'ll contact you within 24 hours.</div>';
+      formMessage.style.display = 'block';
+      // Clean URL without reload
+      window.history.replaceState({}, document.title, window.location.pathname + '#get-started');
+    } else if (urlParams.get('error') === '1') {
+      formMessage.innerHTML = '<div class="form-error">Something went wrong. Please try again or call us at (786) 520-5461.</div>';
+      formMessage.style.display = 'block';
+      window.history.replaceState({}, document.title, window.location.pathname + '#get-started');
+    }
+  }
+
   /* ——— Mobile Hamburger Menu ——— */
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobile-menu');

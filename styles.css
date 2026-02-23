@@ -1172,3 +1172,29 @@ footer {
     padding: 20px;
   }
 }
+
+/* ═══════════════════════════════════════════
+   FORM SUCCESS/ERROR MESSAGES
+═══════════════════════════════════════════ */
+.form-success {
+  background: var(--green-bg);
+  border: 1.5px solid var(--green-border);
+  color: #065f46;
+  padding: 16px 20px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  animation: fadeIn 0.5s ease;
+}
+.form-error {
+  background: #fef2f2;
+  border: 1.5px solid #fca5a5;
+  color: #991b1b;
+  padding: 16px 20px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  animation: fadeIn 0.5s ease;
+}
