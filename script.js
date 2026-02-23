@@ -8,17 +8,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const urlParams = new URLSearchParams(window.location.search);
   const formMessage = document.getElementById('form-message');
 
-  if (formMessage) {
+  if (formMessage && (urlParams.get('success') === '1' || urlParams.get('error') === '1')) {
     if (urlParams.get('success') === '1') {
       formMessage.innerHTML = '<div class="form-success">Thank you! Your request has been received. We\'ll contact you within 24 hours.</div>';
-      formMessage.style.display = 'block';
-      // Clean URL without reload
-      window.history.replaceState({}, document.title, window.location.pathname + '#get-started');
-    } else if (urlParams.get('error') === '1') {
+    } else {
       formMessage.innerHTML = '<div class="form-error">Something went wrong. Please try again or call us at (786) 520-5461.</div>';
-      formMessage.style.display = 'block';
-      window.history.replaceState({}, document.title, window.location.pathname + '#get-started');
     }
+    formMessage.style.display = 'block';
+
+    // Scroll to message after a brief delay to ensure visibility
+    setTimeout(() => {
+      formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+
+    // Clean URL without reload
+    window.history.replaceState({}, document.title, window.location.pathname);
   }
 
   /* ——— Mobile Hamburger Menu ——— */

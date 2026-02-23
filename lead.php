@@ -7,8 +7,8 @@
 // Configuration
 $recipient_email = 'info@jdpcredit.com';
 $email_subject = 'New Lead from JDP Credit Solutions Website';
-$redirect_success = 'index.html?success=1#get-started';
-$redirect_error = 'index.html?error=1#get-started';
+$redirect_success = 'index.html?success=1';
+$redirect_error = 'index.html?error=1';
 
 // Only process POST requests
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
