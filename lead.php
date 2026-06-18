@@ -33,12 +33,14 @@ $message = isset($_POST['message']) ? sanitize($_POST['message']) : '';
 
 // Validate required fields
 if (empty($name) || empty($email) || empty($phone) || empty($goal)) {
+    file_put_contents('mail_error.log', "[" . date('Y-m-d H:i:s') . "] Validation failed: empty required fields. Name: '$name', Email: '$email', Phone: '$phone', Goal: '$goal'\n", FILE_APPEND);
     header('Location: ' . $redirect_error);
     exit;
 }
 
 // Validate email format
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    file_put_contents('mail_error.log', "[" . date('Y-m-d H:i:s') . "] Validation failed: invalid email format '$email'\n", FILE_APPEND);
     header('Location: ' . $redirect_error);
     exit;
 }
@@ -64,7 +66,18 @@ $headers = array(
 );
 
 // Send email
-$mail_sent = mail($recipient_email, $email_subject, $email_body, implode("\r\n", $headers));
+$mail_sent = @mail($recipient_email, $email_subject, $email_body, implode("\r\n", $headers));
+
+if (!$mail_sent) {
+    $last_error = error_get_last();
+    $log_msg = "[" . date('Y-m-d H:i:s') . "] Primary email failed to send to $recipient_email. ";
+    if ($last_error) {
+        $log_msg .= "Error details: " . $last_error['message'];
+    } else {
+        $log_msg .= "No PHP mail error returned. This usually means the mail server is not configured in php.ini.";
+    }
+    file_put_contents('mail_error.log', $log_msg . "\n", FILE_APPEND);
+}
 
 // Send auto-reply to the lead
 if ($mail_sent) {
@@ -87,7 +100,15 @@ if ($mail_sent) {
         'Content-Type: text/plain; charset=UTF-8'
     );
 
-    mail($email, $auto_reply_subject, $auto_reply_body, implode("\r\n", $auto_reply_headers));
+    $auto_reply_sent = @mail($email, $auto_reply_subject, $auto_reply_body, implode("\r\n", $auto_reply_headers));
+    if (!$auto_reply_sent) {
+        $last_error = error_get_last();
+        $log_msg = "[" . date('Y-m-d H:i:s') . "] Auto-reply failed to send to $email. ";
+        if ($last_error) {
+            $log_msg .= "Error details: " . $last_error['message'];
+        }
+        file_put_contents('mail_error.log', $log_msg . "\n", FILE_APPEND);
+    }
 }
 
 // Redirect based on result
