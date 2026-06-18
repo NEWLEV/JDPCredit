@@ -77,7 +77,7 @@ $mail = new PHPMailer(true);
 try {
     // SMTP configuration - replace with your credentials
     $mail->isSMTP();
-    $mail->Host = 'smtp.hostinger.com';
+    $mail->Host = 'smtp.titan.email';
     $mail->SMTPAuth = true;
     $mail->Username = 'noreply@jdpcredit.com';
     $mail->Password = 'M1@m1305';
@@ -117,7 +117,7 @@ if ($mail_sent) {
     try {
         // SMTP configuration - replace with your credentials
         $mail->isSMTP();
-        $mail->Host = 'smtp.hostinger.com';
+        $mail->Host = 'smtp.titan.email';
         $mail->SMTPAuth = true;
         $mail->Username = 'noreply@jdpcredit.com';
         $mail->Password = 'M1@m1305';
