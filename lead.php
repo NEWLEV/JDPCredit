@@ -59,7 +59,7 @@ $email_body .= "IP Address: " . $_SERVER['REMOTE_ADDR'] . "\n";
 
 // Email headers
 $headers = array(
-    'From: JDP Credit Solutions <noreply@jdpcreditsolutions.com>',
+    'From: JDP Credit Solutions <noreply@jdpcredit.com>',
     'Reply-To: ' . $email,
     'X-Mailer: PHP/' . phpversion(),
     'Content-Type: text/plain; charset=UTF-8'
@@ -92,11 +92,11 @@ if ($mail_sent) {
     $auto_reply_body .= "2125 Biscayne Blvd, Ste 204\n";
     $auto_reply_body .= "Miami, FL 33137\n";
     $auto_reply_body .= "(786) 520-5461\n";
-    $auto_reply_body .= "info@jdpcreditsolutions.com\n";
+    $auto_reply_body .= "info@jdpcredit.com\n";
 
     $auto_reply_headers = array(
-        'From: JDP Credit Solutions <noreply@jdpcreditsolutions.com>',
-        'Reply-To: info@jdpcreditsolutions.com',
+        'From: JDP Credit Solutions <noreply@jdpcredit.com>',
+        'Reply-To: info@jdpcredit.com',
         'Content-Type: text/plain; charset=UTF-8'
     );
 
