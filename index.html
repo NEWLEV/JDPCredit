@@ -462,9 +462,11 @@
                   "
                 >
                   <div>
-                    <label style="font-size: 12px">Card 1 Balance ($)</label
+                    <label for="util-bal-1" style="font-size: 12px">Card 1 Balance ($)</label
                     ><input
                       type="number"
+                      id="util-bal-1"
+                      name="util-bal-1"
                       class="util-bal"
                       placeholder="e.g. 1200"
                       min="0"
@@ -472,9 +474,11 @@
                     />
                   </div>
                   <div>
-                    <label style="font-size: 12px">Card 1 Limit ($)</label
+                    <label for="util-lim-1" style="font-size: 12px">Card 1 Limit ($)</label
                     ><input
                       type="number"
+                      id="util-lim-1"
+                      name="util-lim-1"
                       class="util-lim"
                       placeholder="e.g. 3000"
                       min="0"
@@ -491,9 +495,11 @@
                   "
                 >
                   <div>
-                    <label style="font-size: 12px">Card 2 Balance ($)</label
+                    <label for="util-bal-2" style="font-size: 12px">Card 2 Balance ($)</label
                     ><input
                       type="number"
+                      id="util-bal-2"
+                      name="util-bal-2"
                       class="util-bal"
                       placeholder="e.g. 0"
                       min="0"
@@ -501,9 +507,11 @@
                     />
                   </div>
                   <div>
-                    <label style="font-size: 12px">Card 2 Limit ($)</label
+                    <label for="util-lim-2" style="font-size: 12px">Card 2 Limit ($)</label
                     ><input
                       type="number"
+                      id="util-lim-2"
+                      name="util-lim-2"
                       class="util-lim"
                       placeholder="e.g. 5000"
                       min="0"
@@ -520,9 +528,11 @@
                   "
                 >
                   <div>
-                    <label style="font-size: 12px">Card 3 Balance ($)</label
+                    <label for="util-bal-3" style="font-size: 12px">Card 3 Balance ($)</label
                     ><input
                       type="number"
+                      id="util-bal-3"
+                      name="util-bal-3"
                       class="util-bal"
                       placeholder="Optional"
                       min="0"
@@ -530,9 +540,11 @@
                     />
                   </div>
                   <div>
-                    <label style="font-size: 12px">Card 3 Limit ($)</label
+                    <label for="util-lim-3" style="font-size: 12px">Card 3 Limit ($)</label
                     ><input
                       type="number"
+                      id="util-lim-3"
+                      name="util-lim-3"
                       class="util-lim"
                       placeholder="Optional"
                       min="0"
@@ -577,52 +589,61 @@
               <p class="muted" style="font-size: 13px; margin: 0 0 14px">
                 Lenders want your DTI under 43%. Below 36% is ideal.
               </p>
-              <label style="font-size: 12px">Gross Monthly Income ($)</label>
+              <label for="dti-income" style="font-size: 12px">Gross Monthly Income ($)</label>
               <input
                 type="number"
                 id="dti-income"
+                name="dti-income"
                 placeholder="e.g. 5000"
                 min="0"
                 oninput="calcDTI()"
               />
-              <label style="font-size: 13px; margin-top: 14px"
-                >Monthly Debt Payments</label
+              <p style="font-size: 13px; margin-top: 14px; margin-bottom: 8px; font-weight: 600"
+                >Monthly Debt Payments</p
               >
-              <label style="font-size: 12px; font-weight: 400"
+              <label for="dti-rent" style="font-size: 12px; font-weight: 400"
                 >Rent / Mortgage ($)</label
               >
               <input
                 type="number"
+                id="dti-rent"
+                name="dti-rent"
                 class="dti-debt"
                 placeholder="e.g. 1500"
                 min="0"
                 oninput="calcDTI()"
               />
-              <label style="font-size: 12px; font-weight: 400"
+              <label for="dti-auto" style="font-size: 12px; font-weight: 400"
                 >Auto Loan(s) ($)</label
               >
               <input
                 type="number"
+                id="dti-auto"
+                name="dti-auto"
                 class="dti-debt"
                 placeholder="e.g. 400"
                 min="0"
                 oninput="calcDTI()"
               />
-              <label style="font-size: 12px; font-weight: 400"
+              <label for="dti-cards" style="font-size: 12px; font-weight: 400"
                 >Credit Card Minimums ($)</label
               >
               <input
                 type="number"
+                id="dti-cards"
+                name="dti-cards"
                 class="dti-debt"
                 placeholder="e.g. 150"
                 min="0"
                 oninput="calcDTI()"
               />
-              <label style="font-size: 12px; font-weight: 400"
+              <label for="dti-student" style="font-size: 12px; font-weight: 400"
                 >Student / Other Loans ($)</label
               >
               <input
                 type="number"
+                id="dti-student"
+                name="dti-student"
                 class="dti-debt"
                 placeholder="e.g. 200"
                 min="0"
@@ -780,12 +801,13 @@
                   <div id="quiz-result-text" style="font-size: 14px"></div>
                 </div>
                 <div style="margin-top: 12px">
-                  <label style="font-weight: 700; font-size: 13px"
+                  <label for="quiz-email" style="font-weight: 700; font-size: 13px"
                     >Get your full plan — free:</label
                   >
                   <input
                     type="email"
                     id="quiz-email"
+                    name="quiz-email"
                     placeholder="your@email.com"
                     style="margin-top: 6px"
                   />

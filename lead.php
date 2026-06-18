@@ -65,17 +65,34 @@ $headers = array(
     'Content-Type: text/plain; charset=UTF-8'
 );
 
-// Send email
-$mail_sent = @mail($recipient_email, $email_subject, $email_body, implode("\r\n", $headers));
+// Send email using PHPMailer
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-if (!$mail_sent) {
-    $last_error = error_get_last();
-    $log_msg = "[" . date('Y-m-d H:i:s') . "] Primary email failed to send to $recipient_email. ";
-    if ($last_error) {
-        $log_msg .= "Error details: " . $last_error['message'];
-    } else {
-        $log_msg .= "No PHP mail error returned. This usually means the mail server is not configured in php.ini.";
-    }
+require __DIR__ . '/vendor/phpmailer/phpmailer/src/Exception.php';
+require __DIR__ . '/vendor/phpmailer/phpmailer/src/PHPMailer.php';
+
+$mail = new PHPMailer(true);
+try {
+    // SMTP configuration - replace with your credentials
+    $mail->isSMTP();
+    $mail->Host = 'smtp.hostinger.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'noreply@jdpcredit.com';
+    $mail->Password = 'M1@m1305';
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+    $mail->Port = 465;
+
+    $mail->setFrom('noreply@jdpcredit.com', 'JDP Credit Solutions');
+    $mail->addAddress($recipient_email);
+    $mail->Subject = $email_subject;
+    $mail->Body = $email_body;
+    $mail->CharSet = 'UTF-8';
+
+    $mail_sent = $mail->send();
+} catch (Exception $e) {
+    $mail_sent = false;
+    $log_msg = "[" . date('Y-m-d H:i:s') . "] PHPMailer error: " . $e->getMessage();
     file_put_contents('mail_error.log', $log_msg . "\n", FILE_APPEND);
 }
 
@@ -94,19 +111,27 @@ if ($mail_sent) {
     $auto_reply_body .= "(786) 520-5461\n";
     $auto_reply_body .= "info@jdpcredit.com\n";
 
-    $auto_reply_headers = array(
-        'From: JDP Credit Solutions <noreply@jdpcredit.com>',
-        'Reply-To: info@jdpcredit.com',
-        'Content-Type: text/plain; charset=UTF-8'
-    );
+    // Send email using PHPMailer
+    $mail = new PHPMailer(true);
+    try {
+        // SMTP configuration - replace with your credentials
+        $mail->isSMTP();
+    $mail->Host = 'smtp.hostinger.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'noreply@jdpcredit.com';
+    $mail->Password = 'M1@m1305';
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+    $mail->Port = 465;
 
-    $auto_reply_sent = @mail($email, $auto_reply_subject, $auto_reply_body, implode("\r\n", $auto_reply_headers));
-    if (!$auto_reply_sent) {
-        $last_error = error_get_last();
-        $log_msg = "[" . date('Y-m-d H:i:s') . "] Auto-reply failed to send to $email. ";
-        if ($last_error) {
-            $log_msg .= "Error details: " . $last_error['message'];
-        }
+        $mail->setFrom('noreply@jdpcredit.com', 'JDP Credit Solutions');
+        $mail->addAddress($email);
+        $mail->Subject = $auto_reply_subject;
+        $mail->Body = $auto_reply_body;
+        $mail->CharSet = 'UTF-8';
+
+        $mail->send();
+    } catch (Exception $e) {
+        $log_msg = "[" . date('Y-m-d H:i:s') . "] Auto-reply PHPMailer error: " . $e->getMessage();
         file_put_contents('mail_error.log', $log_msg . "\n", FILE_APPEND);
     }
 }
