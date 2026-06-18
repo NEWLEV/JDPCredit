@@ -71,6 +71,7 @@ use PHPMailer\PHPMailer\Exception;
 
 require __DIR__ . '/vendor/phpmailer/phpmailer/src/Exception.php';
 require __DIR__ . '/vendor/phpmailer/phpmailer/src/PHPMailer.php';
+require __DIR__ . '/vendor/phpmailer/phpmailer/src/SMTP.php';
 
 $mail = new PHPMailer(true);
 try {
@@ -116,12 +117,12 @@ if ($mail_sent) {
     try {
         // SMTP configuration - replace with your credentials
         $mail->isSMTP();
-    $mail->Host = 'smtp.hostinger.com';
-    $mail->SMTPAuth = true;
-    $mail->Username = 'noreply@jdpcredit.com';
-    $mail->Password = 'M1@m1305';
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-    $mail->Port = 465;
+        $mail->Host = 'smtp.hostinger.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'noreply@jdpcredit.com';
+        $mail->Password = 'M1@m1305';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        $mail->Port = 465;
 
         $mail->setFrom('noreply@jdpcredit.com', 'JDP Credit Solutions');
         $mail->addAddress($email);
